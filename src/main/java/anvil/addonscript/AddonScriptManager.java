@@ -16,6 +16,42 @@ public class AddonScriptManager {
 
     public static final Gson gson = new GsonBuilder().create();
 
+    public static AddonScriptJSON loadExtScript(AddonScriptJSON addon) {
+        if (addon.extScript != null) {
+            AddonScriptJSON ext = getAddonFromURL(addon.extScript);
+            if (ext.versions != null) {
+                if (addon.versions !=null) {
+                    addon.versions.addAll(ext.versions);
+                } else {
+                    addon.versions = ext.versions;
+                }
+            }
+
+            if (ext.repositories != null) {
+                if (addon.repositories != null) {
+                    for (AddonScriptJSON.Repository repository : ext.repositories) {
+
+                        boolean included = false;
+                        for (AddonScriptJSON.Repository repo : addon.repositories) {
+                            if (repo.link.equals(repository.link)) {
+                                included = true;
+                            }
+                        }
+
+                        if (!included) {
+                            addon.repositories.add(repository);
+                        }
+                    }
+                } else {
+                    addon.repositories = ext.repositories;
+                }
+            }
+
+        }
+
+        return addon;
+    }
+
     public static AddonScriptJSON getAddonFromURL(String urlString) {
         String json = "";
         try {
@@ -31,7 +67,7 @@ public class AddonScriptManager {
             throw new RuntimeException(e);
         }
 
-        return AddonScriptJSON.fromJSON(json);
+        return loadExtScript(AddonScriptJSON.fromJSON(json));
 
     }
 
