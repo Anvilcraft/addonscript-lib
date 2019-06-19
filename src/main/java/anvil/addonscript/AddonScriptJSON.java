@@ -8,7 +8,9 @@ public class AddonScriptJSON {
     public String name;
     public String type;
     public List<Version> versions;
+    public String extScript;
     public List<Contributor> contributors;
+    public List<Repository> repositories;
 
     public static class Version {
         public String versionname;
@@ -24,7 +26,6 @@ public class AddonScriptJSON {
             public String dir; //File, Maven
             public String version; //Maven, AddonScript
             public String addonID; //AddonScript, Maven (artifact id)
-            public String repository; //AddonScript, Maven
 
             public String file; //AddonScript, File
 
@@ -44,6 +45,11 @@ public class AddonScriptJSON {
             public int maxVersion;
             public int[] versions;
         }
+    }
+
+    public static class Repository {
+        public String type; //Can be maven or addonscript (in future)
+        public String link;
     }
 
     public static class Contributor {
