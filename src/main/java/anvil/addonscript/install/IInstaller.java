@@ -4,6 +4,6 @@ import java.io.File;
 
 public interface IInstaller {
 
-    void installFile(File file, String params);
+    void installFile(File file, String params, String workingDir);
 
 }
