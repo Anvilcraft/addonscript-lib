@@ -33,8 +33,11 @@ public class AddonScriptJSON {
             public String projectID;
             public String fileID;
 
+            //Local
+            public String overrides;
+
             //For all
-            public String type; //Can be file, addonscript, curseforge or maven
+            public String type; //Can be file, addonscript, curseforge, maven or local
             public boolean client;
             public boolean server;
             public boolean alternative;
@@ -49,7 +52,8 @@ public class AddonScriptJSON {
             //Only for addonscript
             public int minVersion;
             public int maxVersion;
-            public int[] versions;
+            public boolean openUp;
+            public boolean openDown;
             //Only for curseforge
             public String projectID;
             public String fileID;
