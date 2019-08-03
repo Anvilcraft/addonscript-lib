@@ -36,8 +36,4 @@ public class FileDownloader {
 
     }
 
-    public static File downloadFile(String link) {
-        return downloadFile(link, "./");
-    }
-
 }
